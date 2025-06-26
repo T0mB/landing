@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>GitHub File Viewer</title>
+    <style>
+        #file-content {
+              border: 1px solid black;
+              background-color: lightblue;
+              padding-top: 10px;
+              padding-right: 20px;
+              padding-bottom: 10px;
+              padding-left: 20px;
+              margin-right: 25px;
+              margin-left: 25px;
+            }
+    </style>
+
+</head>
+<body>
+
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script language="JavaScript" type="text/javascript">
+        function renderFile(response) {
+            try {
+                console.log(response)
+                const data = JSON.parse(response);
+                if (data.content) {
+                    const decoded = atob(data.content);
+                    if (data.name.endsWith('.md')) {
+                        const bytes = new Uint8Array(decoded.length);
+                            for (let i = 0; i < decoded.length; i++) {
+                            bytes[i] = decoded.charCodeAt(i);
+                            }
+                        const decodedString = new TextDecoder().decode(bytes);
+                        return marked.parse(decodedString);
+                    }
+                    return `<pre>${decoded}</pre>`;
+                }
+            } catch (e) {
+                console.error(e);
+            }
+            return "Error loading file.";
+        }
+
+        function myFunction(response) {
+            console.log("HTMX request completed!", response);
+            // Your custom logic here
+        }
+    </script>
+
+    <h1>GitHub File Viewer</h1>
+    <button
+            th:hx-get="@{/api/github/vleermuis}"
+            hx-trigger="click"
+            hx-target="#file-content"
+            hx-swap="none"
+            hx-on-htmx-after-request="document.getElementById('file-content').innerHTML = renderFile(event.detail.xhr.responseText)"
+    >
+        Load File
+    </button>
+    <div id="file-content"></div>
+</body>
+</html>
