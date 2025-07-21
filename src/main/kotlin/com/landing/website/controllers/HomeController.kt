@@ -14,11 +14,6 @@ class HomeController {
         return "index";
     }
 
-    @PostMapping("/furtherInfo")
-    fun furtherInfo(): String {
-        return "../static/furtherinfo"
-    }
-
     @GetMapping("/git")
     fun example(request: HttpServletRequest): String {
         return "git";
