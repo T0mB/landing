@@ -24,4 +24,9 @@ class HomeController {
         return "git";
     }
 
+    @GetMapping("/sidebar")
+    fun getSidebar(): String {
+        return "fragments/sidebar"
+    }
+
 }

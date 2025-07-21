@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" th:href="@{/css/base.css}">
+</head>
+<body>
+    <nav id="sidebar" class="sidebar">
+        <ul>
+            <li>
+                <a th:href="@{/git}"
+                   th:hx-get="@{/git}"
+                   hx-target="#content-main"
+                   hx-push-url="true">
+                    Load vleermuis
+                </a>
+            </li>
+        </ul>
+    </nav>
+</body>
+</html>

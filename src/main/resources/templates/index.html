@@ -11,26 +11,18 @@
 
 </head>
 <body>
-    <main class="my-5">
         <div class="container">
-            <h1 class="mb-4">Homepage</h1>
+            <div class="header">
+                <h1 class="mb-4">Homepage</h1>
+            </div>
 
+            <div hx-get="/sidebar" hx-trigger="load"></div>
+
+            <div id="vertical-divider" class="divider"></div>
+
+            <div id="content-main" class="content">
+                <!-- Content will be loaded here -->
+            </div>
         </div>
-        <div class="hzBar"></div>
-
-        <a th:href="@{/git}"
-           th:hx-get="@{/git}"
-           hx-target="#content-inner-links"
-           hx-swap="innerHTML"
-           hx-push-url="true"
-           class="nav-link">
-            Load vleermuis
-        </a>
-
-        <div id="content-inner-links">
-            <!-- Content will be loaded here -->
-        </div>
-
-    </main>
 </body>
 </html>
