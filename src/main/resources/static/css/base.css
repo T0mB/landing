@@ -27,7 +27,7 @@ html, body {
   height: 100vh;
   display: grid;
   grid-template-areas:
-    "header header header"
+    "logo divider header"
     "menu divider content"
     "menu divider content";
   grid-template-columns: 80px 5px 1fr;
@@ -39,9 +39,11 @@ html, body {
 
 .container > div.header {
   grid-area: header;
-  text-align: center;
+  text-align: left;
+  padding-left: 20px
 }
 
 .container > div.content {
   grid-area: content;
+  padding: 50px;
 }
