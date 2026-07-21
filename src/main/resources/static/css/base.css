@@ -1,0 +1,50 @@
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  background-color: #faf9f5;
+}
+
+.sidebar ul {
+  list-style: none;
+  padding-left: 2px;
+  grid-area: menu;
+}
+
+#vertical-divider {
+  height: 100%;
+  width: 1px;
+  background-color: #000;
+  position: relative;
+  margin: 0 20px;
+  grid-area: divider;
+}
+
+.container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  display: grid;
+  grid-template-areas:
+    "logo divider header"
+    "menu divider content"
+    "menu divider content";
+  grid-template-columns: 80px 5px 1fr;
+  grid-template-rows: 80px 1fr 1fr;
+  gap: 5px;
+  padding: 5px;
+
+}
+
+.container > div.header {
+  grid-area: header;
+  text-align: left;
+  padding-left: 20px
+}
+
+.container > div.content {
+  grid-area: content;
+  padding: 50px;
+}
